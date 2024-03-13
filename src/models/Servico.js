@@ -17,6 +17,16 @@ export default class Servico extends Model {
           },
         },
       },
+      telefone: {
+        type: Sequelize.STRING,
+        required: true,
+        validate: {
+          is: {
+            args: /^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$/,
+            msg: 'Campo celular incorreto. Ex: (12)12345-1234',
+          },
+        },
+      },
       desc_servico: {
         type: Sequelize.TEXT,
         required: true,
