@@ -12,6 +12,7 @@ import homeRoutes from './src/routes/homeRoutes';
 import usuarioRoutes from './src/routes/usuarioRoutes';
 import logRoutes from './src/routes/logRoutes';
 import servicoRoutes from './src/routes/servicoRoutes';
+import fotoRoutes from './src/routes/fotoRoutes';
 
 const listaSite = [
   'http://localhost:3000',
@@ -43,9 +44,10 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
-    this.app.use('/usuarios', usuarioRoutes);
-    this.app.use('/log', logRoutes);
-    this.app.use('/servicos', servicoRoutes);
+    this.app.use('/usuarios/', usuarioRoutes);
+    this.app.use('/log/', logRoutes);
+    this.app.use('/servicos/', servicoRoutes);
+    this.app.use('/fotos/', fotoRoutes);
   }
 }
 
