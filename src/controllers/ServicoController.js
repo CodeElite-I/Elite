@@ -1,13 +1,18 @@
 import Servico from '../models/Servico';
+import Usuario from '../models/Usuario';
 
 class ServicoController {
   async create(req, res) {
     try {
-      const novoServico = await Servico.create(req.body);
+      const usuario = await Usuario.findByPk(req.usuarioId);
+      console.log(usuario.id);
+      const novoServico = await Servico.create(
+        { ...req.body, usuario_id: usuario.id },
+      );
 
       return res.status(201).json(novoServico);
     } catch (e) {
-      return res.status(400).json({ errors: e.errors.map((err) => err.message) });
+      return res.status(400).json(e);
     }
   }
 
