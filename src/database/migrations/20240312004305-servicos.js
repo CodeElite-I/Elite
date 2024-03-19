@@ -10,9 +10,15 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    cliente: {
-      type: Sequelize.STRING,
+    usuario_id: {
+      type: Sequelize.INTEGER,
       allowNull: false,
+      references: {
+        model: 'usuarios',
+        key: 'id',
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
     },
     telefone: {
       type: Sequelize.STRING,
