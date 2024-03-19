@@ -7,16 +7,6 @@ export default class Servico extends Model {
         type: Sequelize.ENUM('Aguardando', 'Iniciado', 'Finalizado'),
         defaultValue: 'Aguardando',
       },
-      cliente: {
-        type: Sequelize.STRING,
-        required: true,
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'Nome do cliente precisar ter mais de 3 caracteres',
-          },
-        },
-      },
       telefone: {
         type: Sequelize.STRING,
         required: true,
@@ -46,5 +36,9 @@ export default class Servico extends Model {
     });
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Usuario, { foreignKey: 'usuario_id' });
   }
 }
