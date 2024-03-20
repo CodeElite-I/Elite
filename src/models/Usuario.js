@@ -7,24 +7,38 @@ export default class Usuario extends Model {
       nome: {
         type: Sequelize.STRING,
         required: true,
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'Campo nome precisar ter mais de 3 caracteres',
-          },
-        },
+      },
+      cpf: {
+        type: Sequelize.STRING,
+        required: true,
+      },
+      cep: {
+        type: Sequelize.STRING,
+        required: true,
+      },
+      rua: {
+        type: Sequelize.STRING,
+        required: true,
+      },
+      numero: {
+        type: Sequelize.INTEGER,
+        required: true,
+      },
+      bairro: {
+        type: Sequelize.STRING,
+        required: true,
+      },
+      cidade: {
+        type: Sequelize.STRING,
+        required: true,
+      },
+      estado: {
+        type: Sequelize.STRING,
+        required: true,
       },
       email: {
         type: Sequelize.STRING,
         required: true,
-        unique: {
-          msg: 'Email já cadastrado',
-        },
-        validate: {
-          isEmail: {
-            msg: 'Email inválido',
-          },
-        },
       },
       senha_hash: {
         type: Sequelize.STRING,
@@ -33,29 +47,18 @@ export default class Usuario extends Model {
       senha: {
         type: Sequelize.VIRTUAL,
         required: true,
-        validate: {
-          len: {
-            args: [6, 100],
-            msg: 'A senha precisa ter 6 ou mais caracteres',
-          },
-        },
+      },
+      telefone: {
+        type: Sequelize.STRING,
+        required: true,
       },
       inativo: {
         type: Sequelize.INTEGER,
         defaultValue: '0',
-        enum: {
-          values: ['0', '1'],
-          msg: 'Digite 1 para inativo ou 0 para não',
-        },
       },
       excluido: {
         type: Sequelize.INTEGER,
         defaultValue: '0',
-        validate: {
-          isInt: {
-            msg: 'Digite 1 para excluido ou 0 para não',
-          },
-        },
       },
     }, {
       sequelize,
