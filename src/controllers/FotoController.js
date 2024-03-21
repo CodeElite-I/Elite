@@ -14,12 +14,17 @@ class FotoController {
           errors: [error.code],
         });
       }
-      const { originalname, filename } = req.file;
-      const usuario = await Usuario.findByPk(req.usuarioId);
 
-      const foto = await Foto.create({ originalname, filename, usuario_id: usuario.id });
+      try {
+        const { originalname, filename } = req.file;
+        const usuario = await Usuario.findByPk(req.usuarioId);
 
-      return res.json(foto);
+        const foto = await Foto.create({ originalname, filename, usuario_id: usuario.id });
+
+        return res.status(201).json(foto);
+      } catch (e) {
+        return res.status(400).json({ errors: [e.mesage] });
+      }
     });
   }
 }
