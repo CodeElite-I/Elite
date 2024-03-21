@@ -73,6 +73,10 @@ export default class Usuario extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.hasMany(models.Foto, { foreignKey: 'usuario_id' });
+  }
+
   senhaIsValid(senha) {
     return bcryptjs.compare(senha, this.senha_hash);
   }
