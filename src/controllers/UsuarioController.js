@@ -1,4 +1,5 @@
 import Usuario from '../models/Usuario';
+import Foto from '../models/Foto';
 
 class UsuarioController {
   async create(req, res) {
@@ -13,7 +14,14 @@ class UsuarioController {
 
   async findAll(req, res) {
     try {
-      const usuarios = await Usuario.findAll();
+      const usuarios = await Usuario.findAll({
+        attributes: ['id', 'nome', 'cpf', 'cep', 'rua', 'numero', 'bairro', 'cidade', 'estado', 'email', 'telefone'],
+        order: [['nome', 'ASC'], [Foto, 'id', 'DESC']],
+        include: {
+          model: Foto,
+          attributes: ['url', 'filename'],
+        },
+      });
 
       return res.status(200).json(usuarios);
     } catch (e) {
@@ -24,7 +32,14 @@ class UsuarioController {
   async findById(req, res) {
     try {
       const { id } = req.params;
-      const usuario = await Usuario.findByPk(id);
+      const usuario = await Usuario.findByPk(id, {
+        attributes: ['id', 'nome', 'cpf', 'cep', 'rua', 'numero', 'bairro', 'cidade', 'estado', 'email', 'telefone'],
+        order: [['nome', 'ASC'], [Foto, 'id', 'DESC']],
+        include: {
+          model: Foto,
+          attributes: ['url', 'filename'],
+        },
+      });
       if (!usuario) {
         return res.status(400).json({ errors: ['Usuário não encontrado!'] });
       }
