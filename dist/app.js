@@ -17,6 +17,7 @@ var _fotoRoutes = require('./routes/fotoRoutes'); var _fotoRoutes2 = _interopReq
 
 const listaSite = [
   'http://localhost:3000',
+  'http://35.215.217.109',
 ];
 
 const cosrOptions = {
@@ -41,7 +42,7 @@ class App {
     // this.app.use(helmet());
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
-    this.app.use(_express2.default.static(_path.resolve.call(void 0, __dirname, 'uploads')));
+    this.app.use('/images/', _express2.default.static(_path.resolve.call(void 0, __dirname, '..', 'uploads', 'images')));
   }
 
   routes() {
