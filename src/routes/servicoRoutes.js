@@ -7,7 +7,7 @@ const router = Router();
 
 router
   .post('/', loginRequired, ServicoController.create)
-  .get('/', loginRequired, ServicoController.findAll)
+  .get('/', ServicoController.findAll)
   .get('/:id', loginRequired, ServicoController.findById)
   .put('/:id', loginRequired, ServicoController.update)
   .delete('/:id', loginRequired, ServicoController.delete);

@@ -7,7 +7,7 @@ const router = _express.Router.call(void 0, );
 
 router
   .post('/', _loginRequired2.default, _ServicoController2.default.create)
-  .get('/', _loginRequired2.default, _ServicoController2.default.findAll)
+  .get('/', _ServicoController2.default.findAll)
   .get('/:id', _loginRequired2.default, _ServicoController2.default.findById)
   .put('/:id', _loginRequired2.default, _ServicoController2.default.update)
   .delete('/:id', _loginRequired2.default, _ServicoController2.default.delete);

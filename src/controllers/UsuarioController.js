@@ -25,7 +25,7 @@ class UsuarioController {
 
       return res.status(200).json(usuarios);
     } catch (e) {
-      return res.status(400).json({ errors: e.errors.map((err) => err.message) });
+      return res.status(400).json(e);
     }
   }
 
