@@ -26,7 +26,7 @@ const cosrOptions = {
     if (listaSite.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Não permitido pelo CORS'));
     }
   },
 };
@@ -40,7 +40,9 @@ class App {
 
   middlewares() {
     this.app.use(cors(cosrOptions));
-    this.app.use(helmet());
+    this.app.use(helmet({
+      crossOriginEmbedderPolicy: false,
+    }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
