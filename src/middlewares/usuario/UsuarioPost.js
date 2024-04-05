@@ -5,13 +5,13 @@ export default async (req, res, next) => {
   try {
     const userPost = Joi.object({
       nome: Joi.string().min(4).required(),
-      cpf: Joi.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/).required(),
+      cpf: Joi.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/).required().message('CPF já existe'),
       cep: Joi.string().regex(/^\d{5}-\d{3}$/).required(),
       rua: Joi.string().min(4).required(),
       numero: Joi.number().min(1).required(),
       bairro: Joi.string().min(4).required(),
       cidade: Joi.string().min(4).required(),
-      estado: Joi.string().min(2).required(),
+      estado: Joi.string().min(1).max(2).required(),
       email: Joi.string().email().required(),
       senha: Joi.string().min(6).required(),
       telefone: Joi.string().regex(/^\(\d{2}\)\d{5}-\d{4}$/).required(),
