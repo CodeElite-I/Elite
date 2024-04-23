@@ -4,6 +4,10 @@ import Foto from '../models/Foto';
 class UsuarioController {
   async create(req, res) {
     try {
+      const email = await Usuario.findOne({ where: { email: req.body.email } });
+      if (email) {
+        return res.status(400).json({ errors: ['Este endereço de e-mail já está em uso.'] });
+      }
       const novoUser = await Usuario.create(req.body);
 
       return res.status(201).json(novoUser);
